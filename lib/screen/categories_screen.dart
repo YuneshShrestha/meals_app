@@ -12,9 +12,7 @@ class CategoriesScreen extends StatefulWidget {
 class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text('Categories Screen')),
-        body: Padding(
+    return  Padding(
           padding: const EdgeInsets.all(10.0),
           child: GridView(
             // padding: const EdgeInsets.all(10.0),
@@ -28,6 +26,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 mainAxisSpacing: 20.0,
                 crossAxisSpacing: 20.0),
           ),
-        ));
+        );
   }
 }
