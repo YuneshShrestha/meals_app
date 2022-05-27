@@ -8,7 +8,7 @@ class CategoryMealsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Not Here');
+    // print('Not Here');
 
     final args =
         ModalRoute.of(context)?.settings.arguments as Map<String, String>;

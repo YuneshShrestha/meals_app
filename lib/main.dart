@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meals_app/screen/filters_screen.dart';
 import './screen/bottom_navbar.dart';
 import './screen/category_meals_screen.dart';
 import './screen/meal_detail_screen.dart';
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
         // home: const CategoriesScreen(),
         // darkTheme: ThemeData.dark(),
         // themeMode: ThemeMode.dark,
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // brightness: Brightness.dark,
           colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.purple)
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
               const CategoryMealsScreen(),
           MealDetailScreen.route: (BuildContext context) =>
               const MealDetailScreen(),
+          FiltersScreen.route: (BuildContext context) => const FiltersScreen()
         },
         onUnknownRoute: (settings) {
           return MaterialPageRoute(builder: (_) => const CategoriesScreen());

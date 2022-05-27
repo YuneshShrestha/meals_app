@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meals_app/screen/categories_screen.dart';
-import 'package:meals_app/screen/favrouites.dart';
+import 'package:meals_app/screen/favrouites_screen.dart';
+import 'package:meals_app/widgets/main_drawer.dart';
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
 
   final List<Map<String, Object>> pages = [
     {'page': const CategoriesScreen(), 'title': 'Categories'},
-    {'page': const Favrouites(), 'title': 'Your Favrouites'}
+    {'page': const FavrouitesScreen(), 'title': 'Your Favrouites'}
   ];
 
   @override
@@ -28,7 +29,8 @@ class _BottomNavbarState extends State<BottomNavbar> {
       appBar: AppBar(
         title: Text(pages[currentIndex]['title'] as String),
       ),
-      body: pages[currentIndex]['page'] as Widget,
+      drawer: const MainDrawer(),
+      body: SafeArea(child: pages[currentIndex]['page'] as Widget),
       bottomNavigationBar: BottomNavigationBar(
         onTap: getIndex,
         currentIndex: currentIndex,
