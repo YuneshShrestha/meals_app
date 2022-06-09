@@ -24,6 +24,7 @@ class _MyAppState extends State<MyApp> {
     "lactoseFree": false
   };
   List<Meal> availableMeals = dummyMeals;
+  List<Meal> favrouiteMeals = [];
   void _setFilters(Map<String, bool>? newFilters) {
     setState(() {
       _filters = newFilters;
@@ -45,6 +46,24 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void toggleFavrouite(String mealId) {
+    final existingIndex =
+        favrouiteMeals.indexWhere((favMeal) => favMeal.id == mealId);
+    if (existingIndex > 0) {
+      setState(() {
+        favrouiteMeals.removeAt(existingIndex);
+      });
+    } else {
+      setState(() {
+        favrouiteMeals.add(dummyMeals.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  bool isFavourite(String id) {
+    return favrouiteMeals.any((favMeal) => favMeal.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -64,11 +83,11 @@ class _MyAppState extends State<MyApp> {
         ),
         routes: {
           // "/": (BuildContext context) => const CategoriesScreen(),
-          "/": (BuildContext context) => const BottomNavbar(),
+          "/": (BuildContext context) => BottomNavbar(favrouiteMeals),
           CategoryMealsScreen.route: (BuildContext context) =>
               CategoryMealsScreen(availableMeals),
           MealDetailScreen.route: (BuildContext context) =>
-              const MealDetailScreen(),
+              MealDetailScreen(toggleFavrouite, isFavourite),
           FiltersScreen.route: (BuildContext context) =>
               FiltersScreen(_filters!, _setFilters)
         },

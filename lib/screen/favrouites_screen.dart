@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
-class FavrouitesScreen extends StatefulWidget {
-  const FavrouitesScreen({ Key? key }) : super(key: key);
+import 'package:meals_app/models/meal.dart';
+import 'package:meals_app/widgets/meal_item.dart';
 
-  @override
-  State<FavrouitesScreen> createState() => _FavrouitesScreenState();
-}
-
-class _FavrouitesScreenState extends State<FavrouitesScreen> {
+class FavrouitesScreen extends StatelessWidget {
+  List<Meal> favrouiteMeals;
+  FavrouitesScreen(this.favrouiteMeals, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Fav'),
-    );
+    return favrouiteMeals.isEmpty
+        ? const Center(
+            child: Text('No Favourite Food Available'),
+          )
+        : ListView(
+            children: favrouiteMeals.map((data) {
+              return MealItem(
+                  id: data.id,
+                  title: data.title,
+                  image: data.imageUrl,
+                  affordability: data.affordability,
+                  complexity: data.complexity,
+                  duration: data.duration);
+            }).toList(),
+          );
   }
 }
